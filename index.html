@@ -4,20 +4,20 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>ORBIT — AI Automation Agent (All 10 Phases)</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <!-- KEY BANNER -->
 <div id="keyBanner">
-  <span style="font-size:20px;">🔑</span>
-  <div style="flex:1;min-width:180px;">
-    <div class="kb-lbl">ACTIVATE ORBIT — PASTE YOUR ANTHROPIC API KEY</div>
-    <div class="kb-sub">Get a free key → console.anthropic.com → Settings → API Keys</div>
+  <div class="kb-icon">🔑</div>
+  <div class="kb-text">
+    <strong>ACTIVATE ORBIT — PASTE YOUR ANTHROPIC API KEY</strong>
+    <span>Get a free key → console.anthropic.com → Settings → API Keys</span>
   </div>
   <div class="kb-wrap">
-    <div style="flex:1;">
+    <div class="kb-input-wrap">
       <input type="password" id="apiIn" placeholder="sk-ant-api03-..."/>
       <div id="keyStatus">No key saved</div>
     </div>
@@ -30,7 +30,10 @@
 <!-- ══ SIDEBAR ══════════════════════════════ -->
 <aside class="sidebar">
   <div class="brand">
-    <div class="brand-name">ORBIT</div>
+    <div class="brand-logo">
+      <div class="brand-icon">🌐</div>
+      <div class="brand-name">OR<span>BIT</span></div>
+    </div>
     <div class="brand-tag">AI Automation Agent</div>
   </div>
   <nav class="nav">
@@ -54,7 +57,7 @@
     <div class="ni" onclick="go('growth',this)"><span class="ni-ic">🚀</span>Growth<span class="phase-badge">P7</span></div>
     <div class="ni" onclick="go('memory',this)"><span class="ni-ic">🧠</span>Memory<span class="phase-badge">P8</span></div>
     <div class="ni" onclick="go('safety',this)"><span class="ni-ic">🛡</span>Safety<span class="phase-badge">P10</span></div>
-    <div class="ni" onclick="go('video',this)"><span class="ni-ic">🎬</span>Video Studio<span class="phase-badge">NEW</span></div>
+    <div class="ni" onclick="go('video',this)"><span class="ni-ic">🎬</span>Video Studio<span class="phase-badge new-badge">NEW</span></div>
   </nav>
   <div class="sfoot"><span class="dot-live"></span>All 10 Phases Active</div>
 </aside>
@@ -312,6 +315,4 @@
         </div>
         <button class="btn bp bw" style="margin-top:12px;" onclick="runAnalytics()" id="anBtn">◈ Analyze Performance</button>
       </div>
-      <div class="card">
-        <div class="ch">Analytics Report</div>
-        <div class="out" id
+      <
