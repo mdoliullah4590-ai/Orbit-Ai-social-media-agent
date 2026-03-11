@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ORBIT — AI Social Media Agent</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- KEY BANNER -->
+<div id="keyBanner">
+  <div class="kb-icon">🔑</div>
+  <div class="kb-text">
+    <strong>ACTIVATE ORBIT</strong>
+    <span>console.anthropic.com → Settings → API Keys</span>
+  </div>
+  <div class="kb-right">
+    <input type="text" id="apiIn" placeholder="Paste your Anthropic API key here..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+    <div id="keyStatus">No key saved</div>
+  </div>
+  <button onclick="saveKey()">Save & Activate ✓</button>
+</div>
+
+<div class="shell">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-logo">
+      <div class="brand-icon">🌐</div>
+      <span class="brand-name">OR<span>BIT</span></span>
+    </div>
+    <div class="brand-sub">AI Automation Agent</div>
+  </div>
+  <nav class="nav">
+    <div class="ns">Core</div>
+    <div class="ni on" onclick="go('dash',this)"><div class="ni-ic">⬡</div>Dashboard</div>
+
+    <div class="ns">Phase 1</div>
+    <div class="ni" onclick="go('accounts',this)"><div class="ni-ic">🔗</div>Accounts<span class="badge">P1</span></div>
+    <div class="ni" onclick="go('content',this)"><div class="ni-ic">✦</div>AI Content<span class="badge">P1</span></div>
+    <div class="ni" onclick="go('scheduler',this)"><div class="ni-ic">📅</div>Scheduler<span class="badge">P1</span></div>
+    <div class="ni" onclick="go('media',this)"><div class="ni-ic">🖼</div>Media Gen<span class="badge">P1</span></div>
+
+    <div class="ns">Phase 2–5</div>
+    <div class="ni" onclick="go('automation',this)"><div class="ni-ic">⚙</div>Automation<span class="badge">P2</span></div>
+    <div class="ni" onclick="go('analytics',this)"><div class="ni-ic">◈</div>Analytics<span class="badge">P3</span></div>
+    <div class="ni" onclick="go('comments',this)"><div class="ni-ic">💬</div>Comments/DM<span class="badge">P4</span></div>
+    <div class="ni" onclick="go('trends',this)"><div class="ni-ic">📈</div>Trends<span class="badge">P5</span></div>
+
+    <div class="ns">Phase 6–10</div>
+    <div class="ni" onclick="go('competitor',this)"><div class="ni-ic">🔍</div>Competitor<span class="badge">P6</span></div>
+    <div class="ni" onclick="go('growth',this)"><div class="ni-ic">🚀</div>Growth<span class="badge">P7</span></div>
+    <div class="ni" onclick="go('memory',this)"><div class="ni-ic">🧠</div>Memory<span class="badge">P8</span></div>
+    <div class="ni" onclick="go('safety',this)"><div class="ni-ic">🛡</div>Safety<span class="badge">P10</span></div>
+    <div class="ni" onclick="go('video',this)"><div class="ni-ic">🎬</div>Video Studio<span class="badge new">NEW</span></div>
+  </nav>
+  <div class="sfoot"><span class="dot"></span>All 10 Phases Active</div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="topbar">
+    <div class="page-title" id="pgTitle">Dashboard</div>
+    <div class="top-badges">
+      <span class="pb ig">IG</span>
+      <span class="pb fb">FB</span>
+      <span class="pb tt">TT</span>
+      <span class="pb yt">YT</span>
+      <span class="pb tw">TW</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="tab on" id="tab-dash">
+      <div class="sh">
+        <div class="tag">⬡ Command Center</div>
+        <div class="st">Welcome to <span>ORBIT</span></div>
+        <div class="sd">All 10 phases of your AI social media automation agent — in one app.</div>
+      </div>
+      <div class="g4">
+        <div class="stat"><div class="sv">14</div><div class="sl">AI Tools</div></div>
+        <div class="stat"><div class="sv">10</div><div class="sl">Phases</div></div>
+        <div class="stat"><div class="sv">5</div><div class="sl">Platforms</div></div>
+        <div class="stat"><div class="sv">∞</div><div class="sl">Potential</div></div>
+      </div>
+      <div class="card" style="margin-top:20px;">
+        <div class="ch">⚡ Quick Caption Generator</div>
+        <div class="field"><label class="lbl">Topic</label><input type="text" id="qTopic" placeholder="e.g. New product launch, motivational post..."/></div>
+        <div class="field"><label class="lbl">Platform</label>
+          <select id="qPlat"><option>Instagram</option><option>TikTok</option><option>Facebook</option><option>YouTube</option><option>Twitter/X</option></select>
+        </div>
+        <button class="btn bp bw" style="margin-top:10px;" onclick="quickCap()" id="qBtn">✦ Generate Caption</button>
+        <div class="out" id="qOut" style="display:none;"></div>
+      </div>
+      <div class="card">
+        <div class="ch">🚀 Quick Start Guide</div>
+        <ul class="alist">
+          <li><span class="adot" style="background:#6c63ff"></span><div><b>Step 1</b> — Paste your Anthropic API key in the banner above</div></li>
+          <li><span class="adot" style="background:#22d3ee"></span><div><b>Step 2</b> — Go to <b>AI Content</b> to generate captions, scripts & more</div></li>
+          <li><span class="adot" style="background:#10b981"></span><div><b>Step 3</b> — Use <b>Video Studio</b> to create full video scripts</div></li>
+          <li><span class="adot" style="background:#f59e0b"></span><div><b>Step 4</b> — Check <b>Trends</b> for viral content ideas</div></li>
+          <li><span class="adot" style="background:#ec4899"></span><div><b>Step 5</b> — Use <b>Growth</b> for a 30-day strategy plan</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ACCOUNTS -->
+    <div class="tab" id="tab-accounts">
+      <div class="sh"><div class="tag">P1 — Foundation</div><div class="st">Account <span>Integration</span></div><div class="sd">Connect and manage your social media accounts. AI analyzes your profile and suggests improvements.</div></div>
+      <div class="g2">
+        <div class="card">
+          <div class="ch">Connect Account</div>
+          <div class="field"><label class="lbl">Platform</label>
+            <select id="acPlat"><option>Instagram</option><option>TikTok</option><option>Facebook</option><option>YouTube</option><option>Twitter/X</option></select>
+          </div>
+          <div class="field"><label class="lbl">Username</label><input type="text" id="acHandle" placeholder="@username"/></div>
+          <div class="field"><label class="lbl">Niche</label><input type="text" id="acNiche" placeholder="e.g. Fashion, Tech, Fitness..."/></div>
+          <div class="field"><label class="lbl">Follower Count</label><input type="text" id="acFollowers" placeholder="e.g. 5000"/></div>
+          <button class="btn bp bw" style="margin-top:10px;" onclick="addAccount()">🔗 Connect Account</button>
+          <div id="acList" style="margin-top:14px;"></div>
+        </div>
+        <div class="card">
+          <div class="ch">AI Account Analyzer</div>
+          <div class="field"><label class="lbl">Your Niche</label><input type="text" id="anNiche" placeholder="e.g. Fashion blogger, Tech reviewer..."/></div>
+          <div class="field"><label class="lbl">Current Follower Count</label><input type="text" id="anFollowers" placeholder="e.g. 1200"/></div>
+          <div class="field"><label class="lbl">Your Goal</label>
+            <select id="anGoal"><option>Grow followers fast</option><option>Increase engagement</option><option>Monetize my account</option><option>Build a brand</option><option>Drive website traffic</option></select>
+          </div>
+          <button class="btn bp bw" style="margin-top:10px;" onclick="analyzeAccount()" id="anBtn">◈ Analyze My Account</button>
+          <div class="out" id="anOut" style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI CONTENT -->
+    <div class="tab" id="tab-content">
+      <div class="sh"><div class="tag">P1 — Foundation</div><div class="st">AI Content <span>Generator</span></div><div class="sd">Generate captions, hashtags, bios, carousel ideas and more for any platform.</div></div>
+      <div class="g2">
+        <div class="card">
+          <div class="ch">Content Settings</div>
+          <div class="field"><label class="lbl">Content Type</label>
+            <select id="ctType">
+              <option>Caption with Hashtags</option><option>Instagram Bio</option>
+              <option>Carousel Post Ideas (10 slides)</option><option>Tweet Thread (10 tweets)</option>
+              <option>Facebook Post</option><option>YouTube Video Title + Description</option>
+              <option>TikTok Caption</option><option>LinkedIn Post</option>
+            </select>
+          </div>
+          <div class="field"><label class="lbl">Topic / Niche</label><input type="text" id="ctTopic" placeholder="e.g. Morning productivity tips..."/></div>
+          <div class="field"><label class="lbl">Platform</label>
+            <div class="ptog">
+              <button class="pp" onclick="tpp(this,'ig')">Instagram</button>
+              <button class="pp" onclick="tpp(this,'fb')">Facebook</button>
+              <button class="pp" onclick="tpp(this,'tt')">TikTok</button>
+              <button class="pp" onclick="tpp(this,'yt')">YouTube</button>
+              <button class="pp" onclick="tpp(this,'tw')">Twitter/X</button>
+            </div>
+          </div>
+          <div class="field"><label class="lbl">Tone</label>
+            <select id="ctTone"><option>Engaging & Fun</option><option>Professional</option><option>Inspirational</option><option>Educational</option><option>Casual & Relatable</option><option>Bold & Direct</option></select>
+          </div>
+          <div class="field"><label class="lbl">Target Audience</label><input type="text" id="ctAud" placeholder="e.g. Young entrepreneurs, fitness lovers..."/></div>
+          <button class="btn bp bw" style="margin-top:10px;" onclick="genContent()" id="ctBtn">✦ Generate Content</button>
+        </div>
+        <div class="card">
+          <div class="ch">Generated Content</div>
+          <div class="out" id="ctOut" style="min-height:300px;"><span class="out-ph">Your AI-generated content will appear here...</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHEDULER -->
+    <div class="tab" id="tab-scheduler">
+      <div class="sh"><div class="tag">P1 — Foundation</div><div class="st">Post <span>Scheduler</span></div><div class="sd">Plan and schedule your posts. AI suggests the best times to post for maximum engagement.</div></div>
+      <div class="g2">
+        <div class="card">
+          <div class="ch">Schedule a Post</div>
+          <div class="field"><label class="lbl">Caption</label><textarea id="schCap" rows="3" placeholder="Your post caption..."></textarea></div>
+          <div class="field"><label class="lbl">Platform</label>
+            <select id="schPlat"><option>Instagram</option><option>TikTok</option><option>Facebook</option><option>YouTube</option><option>Twitter/X</option></select>
+          </div>
+          <div class="field"><label class="lbl">Date & Time</label><input type="datetime-local" id="schTime"/></div>
+          <div class="field"><label class="lbl">Status</label>
+            <select id="schStatus"><option value="status-sched">Scheduled</option><option value="status-draft">Draft</option></select>
+          </div>
+          <button class="btn bp bw" style="margin-top:10px;" onclick="addPost()">📅 Add to Schedule</button>
+          <button class="btn bo bw" style="margin-top:8px;" onclick="bestTime()" id="btBtn">🕐 AI: Best Time to Post</button>
+          <div class="out" id="btOut" style="display:none;"></div>
+        </div>
+        <div class="card">
+          <div class="ch">Scheduled Queue</div>
+          <div id="queueList"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDIA -->
+    <div class="tab" id="tab-media">
+      <div class="sh"><div class="tag">P1 — Foundation</div><div class="st">Media <span>Generator</span></div><div class="sd">Generate AI image prompts for Midjourney, DALL-E, and Adobe Firefly.</div></div>
+      <div class="g2">
+        <div class="card">
+          <div class="ch">Image Prompt Generator</div>
+          <div class="field"><label class="lbl">Content Idea</label><textarea id="mgIdea" rows="2" placeholder="e.g. A cozy morning coffee setup for lifestyle blog..."></textarea></div>
+          <div class="field"><label class="lbl">Platform</label>
+            <select id="mgPlat"><option>Instagram Post (1:1)</option><option>Instagram Story (9:16)</option><option>TikTok Thumbnail</option><option>YouTube Thumbnail</option><option>Facebook Cover</option></select>
+          </div>
+          <div class="field"><label class="lbl">Visual Style</label>
+            <select id="mgStyle"><option>Photorealistic</option><option>Minimalist</option><option>Vibrant & Colorful</option><option>Dark & Moody</option><option>Flat Illustration</option><option>3D Render</option><option>Vintage / Film</option></select>
+          </div>
+          <div class="field"><label class="lbl">Niche</label><input type="text" id="mgNiche" placeholder="e.g. Fashion, Food, Travel..."/></div>
+          <button class="btn bp bw" style="margin-top:10px;" onclick="genMedia()" id="mgBtn">🖼 Generate 5 Prompts</button>
+        </div>
+        <div class="card">
+          <div class="ch">AI Image Prompts</div>
+          <div class="out" id="mgOut" style="min-height:280px;"><span class="out-ph">5 ready-to-use prompts for Midjourney, DALL-E 3, or Adobe Firefly will appear here...</span></div>
+          <div class="alert al-info" style="margin-top:14px;">💡 Copy any prompt → paste into <b>Midjourney, DALL-E 3</b> or <b>Adobe Firefly</b> (all have free tiers)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTOMATION -->
+    <div class="tab" id="tab-automation">
+      <div class="sh"><div class="tag">P2 — Automation</div><div class="st">Agent <span>Automation</span></div><div class="sd">Multi-step AI workflows. One click runs a full content pipeline from idea to ready-to-post.</div></div>
+      <div class="card">
+        <div class="ch">⚙ Automation Workflow</div>
+        <div class="field"><label class="lbl">Your Content Idea</label><input type="text" id="autoIdea" placeholder="e.g. Tips for waking up at 5am..."/></div>
+        <div class="field"><label class="lbl">Platform</label>
+          <select id="autoPlat"><option>Instagram</option><option>TikTok</option><option>Facebook</option><option>YouTube</option><option>Twitter/X</option></select>
+        </div>
+        <div class="field"><label class="lbl">Workflow Type</label>
+          <select id="autoType">
+            <option>Full Pipeline (Caption + Hashtags + Best Time + Image Prompt)</option>
+            <option>Content Calendar (7-day plan)</option>
+            <option>Viral Post Strategy</option>
+            <option>Brand Voice Builder</option>
+          </select>
+        </div>
+        <button class="btn bp bw" style="margin-top:10px;" onclick="runAuto()" id="autoBtn">⚙ Run Automation</button>
+        <div class="out" id="autoOut" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- ANALYTICS -->
+    <div class="tab" id="tab-analytics">
+      <div class="sh"><div class="tag">P3 — Analytics</div><div class="st">Analytics <span>AI</span></div><div class="sd">Paste your stats and get AI-powered performance analysis and growth recommendations.</div></div>
+      <div class="g2">
+        <div class="card">
+          <div class="ch">Your Stats</div>
+          <div class="field"><label class="lbl">Platform</label>
+            <select id="anPl"><option>Instagram</option><option>TikTok</option><option>YouTube</option><option>Facebook</option><option>Twitter/X</option></select>
+          </div>
+          <div class="field"><label class="lbl">Followers</label><input type="text" id="anFol" placeholder="e.g. 5200"/></div>
+          <div class="field"><label class="lbl">Avg Likes per Post</label><input type="text" id="anLike" placeholder="e.g. 120"/></div>
+          <div class="field"><label class="lbl">Avg Comments per Post</label><input type="text" id="anCom" placeholder="e.g. 15"/></div>
+          <div class="field"><label class="lbl">Avg Reach per Post</label><input type="text" id="anReach" placeholder="e.g. 800"/></div>
+          <div class="field"><label class="lbl">Post Frequency</label>
+            <select id="anFreq"><option>Daily</option><option>3-4x per week</option><option>1-2x per week</option><option>Less than weekly</option></select>
+          </div>
+          <button class="btn bp bw" style="margin-top:10px;" onclick="analyzeStats()" id="asBtn">◈ Analyze Performance</button>
+        </div>
+        <div class="card">
+          <div class="ch">AI Performance Report</div>
+          <div class="out" id="asOut" style="min-height:300px;"><span class="out-ph">Your detailed performance analysis and recommendations will appear here...</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMENTS -->
+    <div class="tab" id="tab-comments">
+      <div class="sh"><div class="tag">P4 — Engagement</div><div class="st">Comment & <span>DM AI</span></div><div class="sd">Generate smart replies to comments and DMs. Build authentic engagement at scale.</div></div>
+      <div class="g2">
+        <div class="card">
+          <div class="ch">Reply Generator</div>
+          <div class="field"><label class="lbl">Message / Comment</label><textarea id="cmMsg" rows="3" placeholder="Paste the comment or DM you received..."></textarea></div>
+          <div class="field"><label class="lbl">Type</label>
+            <select id="cmType"><option>Reply to a comment</option><option>Reply to a DM</option><option>Handle negative comment</option><option>Thank a follower</option><option>Reply to a product question</option></select>
+          </div>
+          <div class="field"><label class="lbl">Your Niche</label><input type="text" id="cmNiche" placeholder="e.g. Fashion, Fitness..."/></div>
+          <div class="field"><label class="lbl">Tone</label>
+            <select id="cmTone"><option>Friendly & Warm</option><option>Professional</option><option>Funny & Casual</option><option>Empathetic</option></select>
+          </div>
+          <button class="btn bp bw" style="margin-top:10px;" onclick="genReply()" id="cmBtn">💬 Generate 5 Replies</button>
+        </div>
+        <div class="card">
+          <div class="ch">AI Replies</div>
+          <div class="out" id="cmOut" style="min-height:300px;"><span class="out-ph">5 reply variations will appear here — pick the best one...</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRENDS -->
+    <div class="tab" id="tab-trends">
+      <div class="sh"><div class="tag">P5 — Trends</div><div class="st">Trend <span>Detection</span></div><div class="sd">Discover viral topics, trending hashtags, and content ideas for your niche.</div></div>
+      <div class="g2">
+        <div class="card">
+          <div class="ch">Trend Settings</div>
+          <div class="field"><label class="lbl">Your Niche</label><input type="text" id="trNiche" placeholder="e.g. Personal finance, Fitness, Fashion..."/></div>
+          <div class="field"><label class="lbl">Platform</label>
+            <select id="trPlat"><option>TikTok</option><option>Instagram</option><option>YouTube</option><option>Twitter/X</option><option>All Platforms</option></select>
+          </div>
+          <div class="field"><label class="lbl">What to Find</label>
+            <select id="trType">
+              <option>Trending topics & content ideas</option>
+              <option>Viral hashtag strategy</option>
+              <option>Trending audio / sounds</option>
+              <option>Viral video formats</option>
+              <option>Emerging trends to jump on now</option>
+            </select>
+          </div>
+          <button c
